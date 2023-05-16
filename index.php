@@ -1,31 +1,21 @@
 <?php 
 include './inc/db.php';
+include './inc/form.php';
 
-$firstName = $_POST['firstName'];
-$lastName = $_POST['lastName'];
-$email = $_POST['email'];
+//ret = retrieve.
+//for retrieving data from the DB
+$ret = 'SELECT * FROM users';
+$result = mysqli_query($conn, $ret);
+//fetch to show the result as a mysql query.
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-if (isset($_POST['submit'])){
-    $sql = "INSERT INTO users(firstName, lastName, email) 
-            VALUES ('$firstName', '$lastName', '$email')";
+echo '<pre>';
+print_r($users);
+echo '</pre>';
 
-    if(empty($firstName)){
-        echo 'Please enter your first name';
-    }elseif(empty($lastName)){
-        echo 'Please enter your last name';
-    }elseif(empty($email)){
-        echo 'Please enter your email';
-    }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo 'Please enter correct email';
-    }else{
-        if(mysqli_query($conn, $sql)){
-            header('Location: index.php');
-        } else {
-            echo 'Error: ' . mysqli_error($conn);
-        }
-    }
-    
-}
+//always include at the end to close and reset(can include in seperate file)
+mysqli_free_result($result);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
