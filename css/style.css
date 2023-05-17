@@ -1,0 +1,33 @@
+#count-down {
+color: #e63998eb;
+padding: 10px;
+border: 1px solid;
+border-radius: 5px;
+}
+
+#cards{
+display: none;
+}
+
+#loader{
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.loader-con{
+display: block;
+position: fixed;
+top: 0;
+left: 0;
+background-color: #000000eb ;
+}
+
+.list-group-item{
+background-color: transparent ;  
+}
+
+img{
+max-width: 100%;
+}
